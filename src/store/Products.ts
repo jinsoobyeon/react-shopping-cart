@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Product } from "../types/dto";
 
 interface ProductsState {
-  productsList: Array<object>;
+  productsList: Array<Product>;
 }
 
 const initialState: ProductsState = {

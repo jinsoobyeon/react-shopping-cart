@@ -1,11 +1,11 @@
 import React from "react";
-import Nav from "../components/nav";
+import Header from "../components/Header";
 import product from "../assets/images/product.png";
 
 function OrderList() {
   return (
     <React.Fragment>
-      <Nav />
+      <Header />
       <section className="order-section">
         <header className="flex-col-center mt-20">
           <h2 className="order-section__title">주문 목록</h2>

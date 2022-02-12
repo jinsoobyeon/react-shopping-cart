@@ -1,12 +1,12 @@
 import React from "react";
-import Nav from "../components/nav";
+import Header from "../components/Header";
 import product from "../assets/images/product.png";
 import trash from "../assets/svgs/trash.svg";
 
 function Cart() {
   return (
     <React.Fragment>
-      <Nav />
+      <Header />
       <section className="cart-section">
         <header className="flex-col-center mt-20">
           <h2 className="cart-section__title">장바구니</h2>
