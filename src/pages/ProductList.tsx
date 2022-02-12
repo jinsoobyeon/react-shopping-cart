@@ -3,7 +3,7 @@ import Nav from "../components/nav";
 import product from "../assets/images/product.png";
 import cart from "../assets/svgs/cart.svg";
 
-function List() {
+function ProductList() {
   return (
     <React.Fragment>
       <Nav />
@@ -133,4 +133,4 @@ function List() {
   );
 }
 
-export default List;
+export default ProductList;
