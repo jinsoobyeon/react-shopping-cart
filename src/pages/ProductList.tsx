@@ -1,14 +1,25 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { postCart } from "../store/Carts";
 import { RootState } from "../store/index";
 import { Product } from "../types/dto";
 import Header from "../components/Header";
 import cart from "../assets/svgs/cart.svg";
 
 function ProductList() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const products = useSelector(
     (state: RootState) => state.products.productsList
   );
+
+  const addCart = (product: Product) => {
+    dispatch(postCart(product));
+    navigate("/cart");
+  };
 
   return (
     <React.Fragment>
@@ -28,7 +39,7 @@ function ProductList() {
                   {product.price.toLocaleString()}원
                 </span>
               </div>
-              <img src={cart} alt="장바구니" />
+              <img src={cart} alt="장바구니" onClick={() => addCart(product)} />
             </div>
           </div>
         ))}
