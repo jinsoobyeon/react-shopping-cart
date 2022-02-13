@@ -29,7 +29,11 @@ const productsSlice = createSlice({
 });
 
 export const getProducts = createAsyncThunk(`products/get`, async () => {
-  const response = await axios.get("http://localhost:3003/products");
+  const response = await axios({
+    method: "get",
+    url: "http://localhost:3003/products",
+    headers: { "Cache-Control": "no-cache" },
+  });
   return response.data;
 });
 
