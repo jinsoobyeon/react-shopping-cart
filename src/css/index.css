@@ -20,3 +20,15 @@ body {
   width: 100%;
   border: 1px solid #aaaaaa;
 }
+
+@media screen and (max-width: 1440px) {
+  body {
+    max-width: 1440px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    max-width: 768px;
+  }
+}

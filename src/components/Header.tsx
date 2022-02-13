@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <nav className="nav flex justify-around">
-      test
       <div className="flex-center">
         <Link to="/" style={{ cursor: "pointer" }}>
           <h1 className="nav-title">CLEAN CODE SHOP</h1>
