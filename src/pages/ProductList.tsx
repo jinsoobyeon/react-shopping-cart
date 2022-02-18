@@ -5,12 +5,11 @@ import { useDispatch } from "react-redux";
 import { postCart } from "../store/Carts";
 import { RootState } from "../store/index";
 import { Product } from "../types/dto";
-import Header from "../components/Header";
 import Pagination from "../modules/Pagination";
 import cart from "../assets/svgs/cart.svg";
 
 function ProductList() {
-  const [limit, setLimit] = useState(0);
+  const [limit, setLimit] = useState(8);
   const [page, setPage] = useState(1);
 
   const offset = (page - 1) * limit;
@@ -39,13 +38,13 @@ function ProductList() {
 
   return (
     <React.Fragment>
-      <Header />
       <section className="product-container">
         {products.slice(offset, offset + limit).map((product: Product) => (
           <div key={product.id}>
             <img
               className="w-280 h280"
               src={product.imageUrl}
+              loading="lazy"
               alt={`${product.name}`}
             />
             <div className="flex justify-between w-280 p-5">
