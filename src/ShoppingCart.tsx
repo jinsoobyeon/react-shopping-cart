@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./css/index.css";
-import { getProducts } from "./store/Products";
+import { getProducts } from "./modules/Products";
 import Header from "./components/Header";
 import ProductList from "./pages/ProductList";
 import Cart from "./pages/Cart";
