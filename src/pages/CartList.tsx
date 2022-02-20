@@ -3,7 +3,8 @@ import Cart from "../components/Cart";
 import { GetCartResponse } from "../types/dto";
 
 function CartList() {
-  const { carts, totalPrice, totalChecked, handleTotalChecked } = useCart();
+  const { carts, totalPrice, totalChecked, handleTotalChecked, deleteChecked } =
+    useCart();
 
   return (
     <section className="cart-section">
@@ -26,7 +27,9 @@ function CartList() {
                 선택해제
               </label>
             </div>
-            <button className="delete-button">상품삭제</button>
+            <button className="delete-button" onClick={deleteChecked}>
+              상품삭제
+            </button>
           </div>
           <h3 className="cart-title">든든배송 상품(3개)</h3>
           <hr className="divide-line-gray mt-10" />

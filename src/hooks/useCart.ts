@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../modules/Store";
-import { getCarts, totalCheck } from "../modules/Carts";
+import { getCarts, deleteCart, totalCheck } from "../modules/Carts";
 
 function useCart() {
   const dispatch = useDispatch();
@@ -13,6 +13,15 @@ function useCart() {
 
   const handleTotalChecked = () => {
     setTotalChecked(!totalChecked);
+  };
+
+  const deleteChecked = () => {
+    if (window.confirm("선택한 상품을 삭제하시겠습니까?")) {
+      carts.forEach((cart) => {
+        cart.checked && dispatch(deleteCart(cart.id));
+      });
+      dispatch(getCarts());
+    }
   };
 
   const handleTotalPrice = useCallback(() => {
@@ -40,7 +49,7 @@ function useCart() {
     dispatch(totalCheck(totalChecked));
   }, [dispatch, totalChecked]);
 
-  return { carts, totalPrice, totalChecked, handleTotalChecked };
+  return { carts, totalPrice, totalChecked, handleTotalChecked, deleteChecked };
 }
 
 export default useCart;
