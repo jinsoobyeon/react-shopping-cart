@@ -1,29 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
 import useCart from "../hooks/useCart";
 import Cart from "../components/Cart";
 import { GetCartResponse } from "../types/dto";
 
 function CartList() {
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  const { carts } = useCart();
-
-  const handleTotalPrice = useCallback(() => {
-    setTotalPrice(
-      carts
-        .map((cart) => {
-          if (cart.checked) {
-            return cart.product.price * cart.count;
-          }
-          return 0;
-        })
-        .reduce((previous, current) => previous + current, 0)
-    );
-  }, [carts]);
-
-  useEffect(() => {
-    handleTotalPrice();
-  }, [handleTotalPrice]);
+  const { carts, totalPrice, totalChecked, handleTotalChecked } = useCart();
 
   return (
     <section className="cart-section">
@@ -39,7 +19,8 @@ function CartList() {
                 className="checkbox"
                 name="checkbox"
                 type="checkbox"
-                defaultChecked
+                checked={totalChecked}
+                onChange={handleTotalChecked}
               />
               <label className="checkbox-label" htmlFor="checkbox">
                 선택해제

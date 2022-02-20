@@ -27,7 +27,7 @@ function Cart({ id, count, product, checked }: GetCartResponse) {
             className="checkbox"
             name="checkbox"
             type="checkbox"
-            defaultChecked={checked}
+            checked={checked}
             onChange={handleChecked}
           />
           <img

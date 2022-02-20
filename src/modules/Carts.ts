@@ -39,6 +39,20 @@ const cartsSlice = createSlice({
         }
       });
     },
+    totalCheck: (state, action) => {
+      if (action.payload === true) {
+        state.cartsList.forEach((cart) => {
+          cart.checked = true;
+        });
+        return;
+      }
+      if (action.payload === false) {
+        state.cartsList.forEach((cart) => {
+          cart.checked = false;
+        });
+        return;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -88,5 +102,5 @@ export const postCart = createAsyncThunk(
   }
 );
 
-export const { increment, decrement, check } = cartsSlice.actions;
+export const { increment, decrement, check, totalCheck } = cartsSlice.actions;
 export default cartsSlice.reducer;
