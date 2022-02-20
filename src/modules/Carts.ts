@@ -13,7 +13,33 @@ const initialState: CartsState = {
 const cartsSlice = createSlice({
   name: "carts",
   initialState,
-  reducers: {},
+  reducers: {
+    increment: (state, action) => {
+      state.cartsList.forEach((cart) => {
+        if (cart.id === action.payload.id) {
+          if (cart.count < 20) {
+            cart.count = ++action.payload.count;
+          }
+        }
+      });
+    },
+    decrement: (state, action) => {
+      state.cartsList.forEach((cart) => {
+        if (cart.id === action.payload.id) {
+          if (cart.count > 1) {
+            cart.count = --action.payload.count;
+          }
+        }
+      });
+    },
+    check: (state, action) => {
+      state.cartsList.forEach((cart) => {
+        if (cart.id === action.payload.id) {
+          cart.checked = !cart.checked;
+        }
+      });
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getCarts.pending, (state) => {
@@ -21,6 +47,10 @@ const cartsSlice = createSlice({
       })
       .addCase(getCarts.fulfilled, (state, action) => {
         state.cartsList = [...action.payload];
+        state.cartsList.forEach((cart) => {
+          cart.count = 1;
+          cart.checked = true;
+        });
       })
       .addCase(getCarts.rejected, (_, action) => {
         console.log(action.error.message);
@@ -58,4 +88,5 @@ export const postCart = createAsyncThunk(
   }
 );
 
+export const { increment, decrement, check } = cartsSlice.actions;
 export default cartsSlice.reducer;

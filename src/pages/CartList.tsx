@@ -1,9 +1,29 @@
+import { useState, useEffect, useCallback } from "react";
 import useCart from "../hooks/useCart";
 import Cart from "../components/Cart";
 import { GetCartResponse } from "../types/dto";
 
 function CartList() {
+  const [totalPrice, setTotalPrice] = useState(0);
+
   const { carts } = useCart();
+
+  const handleTotalPrice = useCallback(() => {
+    setTotalPrice(
+      carts
+        .map((cart) => {
+          if (cart.checked) {
+            return cart.product.price * cart.count;
+          }
+          return 0;
+        })
+        .reduce((previous, current) => previous + current, 0)
+    );
+  }, [carts]);
+
+  useEffect(() => {
+    handleTotalPrice();
+  }, [handleTotalPrice]);
 
   return (
     <section className="cart-section">
@@ -30,7 +50,13 @@ function CartList() {
           <h3 className="cart-title">든든배송 상품(3개)</h3>
           <hr className="divide-line-gray mt-10" />
           {carts.map((cart: GetCartResponse) => (
-            <Cart key={cart.id} id={cart.id} product={cart.product} />
+            <Cart
+              key={cart.id}
+              id={cart.id}
+              product={cart.product}
+              count={cart.count}
+              checked={cart.checked}
+            />
           ))}
         </section>
         <section className="cart-right-section">
@@ -41,7 +67,9 @@ function CartList() {
           <div className="cart-right-section__bottom">
             <div className="flex justify-between p-20 mt-20">
               <span className="highlight-text">결제예상금액</span>
-              <span className="highlight-text">21,800원</span>
+              <span className="highlight-text">
+                {totalPrice.toLocaleString()}원
+              </span>
             </div>
             <div className="flex-center mt-30 mx-10">
               <button className="primary-button flex-center">

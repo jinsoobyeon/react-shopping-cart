@@ -1,4 +1,6 @@
 import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import store from "../modules/Store";
 import Cart from "../components/Cart";
 
 describe("Cart", () => {
@@ -12,9 +14,20 @@ describe("Cart", () => {
         imageUrl:
           "https://cdn-mart.baemin.com/sellergoods/main/5297837f-5ecd-4945-be2f-4a75854cd06e.jpg",
       },
+      count: 1,
+      checked: true,
     };
 
-    render(<Cart id={cart.id} product={cart.product} />);
+    render(
+      <Provider store={store}>
+        <Cart
+          id={cart.id}
+          product={cart.product}
+          count={cart.count}
+          checked={cart.checked}
+        />
+      </Provider>
+    );
 
     const cartElement = screen.getByTestId("cart");
     expect(cartElement).not.toBeNull();

@@ -22,6 +22,8 @@ export interface PostProductRequest {
 export interface Cart {
   id: number;
   product: Product;
+  count: number;
+  checked: boolean;
 }
 
 export interface GetCartResponse extends Cart {}

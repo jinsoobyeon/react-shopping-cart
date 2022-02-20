@@ -1,8 +1,24 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { increment, decrement, check } from "../modules/Carts";
 import { GetCartResponse } from "../types/dto";
 import trash from "../assets/svgs/trash.svg";
 
-function Cart({ product }: GetCartResponse) {
+function Cart({ id, count, product, checked }: GetCartResponse) {
+  const dispatch = useDispatch();
+
+  const increase = () => {
+    dispatch(increment({ id, count }));
+  };
+
+  const decrease = () => {
+    dispatch(decrement({ id, count }));
+  };
+
+  const handleChecked = () => {
+    dispatch(check({ id, checked }));
+  };
+
   return (
     <React.Fragment>
       <div className="cart-container" data-testid="cart">
@@ -11,7 +27,8 @@ function Cart({ product }: GetCartResponse) {
             className="checkbox"
             name="checkbox"
             type="checkbox"
-            defaultChecked
+            defaultChecked={checked}
+            onChange={handleChecked}
           />
           <img
             className="w-144 h-144"
@@ -24,13 +41,24 @@ function Cart({ product }: GetCartResponse) {
         <div className="flex-col-center justify-end gap-15">
           <img className="cart-trash-svg" src={trash} alt="삭제" />
           <div className="number-input-container">
-            <input type="number" className="number-input" value="1" />
+            <input
+              type="number"
+              className="number-input"
+              value={count}
+              disabled
+            />
             <div>
-              <button className="number-input-button">▲</button>
-              <button className="number-input-button">▼</button>
+              <button className="number-input-button" onClick={increase}>
+                ▲
+              </button>
+              <button className="number-input-button" onClick={decrease}>
+                ▼
+              </button>
             </div>
           </div>
-          <span className="cart-price">{product.price.toLocaleString()}원</span>
+          <span className="cart-price">
+            {(product.price * count).toLocaleString()}원
+          </span>
         </div>
       </div>
       <hr className="divide-line-thin mt-10" />
