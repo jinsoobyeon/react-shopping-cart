@@ -8,6 +8,7 @@ function useCart() {
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalChecked, setTotalChecked] = useState(true);
+  const [totalCount, setTotalCount] = useState(0);
 
   const carts = useSelector((state: RootState) => state.carts.cartsList);
 
@@ -15,16 +16,7 @@ function useCart() {
     setTotalChecked(!totalChecked);
   };
 
-  const deleteChecked = () => {
-    if (window.confirm("선택한 상품을 삭제하시겠습니까?")) {
-      carts.forEach((cart) => {
-        cart.checked && dispatch(deleteCart(cart.id));
-      });
-      dispatch(getCarts());
-    }
-  };
-
-  const handleTotalPrice = useCallback(() => {
+  const handleTotal = useCallback(() => {
     setTotalPrice(
       carts
         .map((cart) => {
@@ -35,21 +27,48 @@ function useCart() {
         })
         .reduce((previous, current) => previous + current, 0)
     );
+
+    setTotalCount(
+      carts
+        .map((cart) => {
+          if (cart.checked) {
+            return cart.count;
+          }
+          return 0;
+        })
+        .reduce((previous, current) => previous + current, 0)
+    );
   }, [carts]);
+
+  const deleteChecked = () => {
+    if (window.confirm("선택한 상품을 삭제하시겠습니까?")) {
+      carts.forEach((cart) => {
+        cart.checked && dispatch(deleteCart(cart.id));
+      });
+      dispatch(getCarts());
+    }
+  };
 
   useEffect(() => {
     dispatch(getCarts());
   }, [dispatch]);
 
   useEffect(() => {
-    handleTotalPrice();
-  }, [handleTotalPrice]);
+    handleTotal();
+  }, [handleTotal]);
 
   useEffect(() => {
     dispatch(totalCheck(totalChecked));
   }, [dispatch, totalChecked]);
 
-  return { carts, totalPrice, totalChecked, handleTotalChecked, deleteChecked };
+  return {
+    carts,
+    totalPrice,
+    totalChecked,
+    totalCount,
+    handleTotalChecked,
+    deleteChecked,
+  };
 }
 
 export default useCart;

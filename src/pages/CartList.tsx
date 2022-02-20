@@ -3,8 +3,14 @@ import Cart from "../components/Cart";
 import { GetCartResponse } from "../types/dto";
 
 function CartList() {
-  const { carts, totalPrice, totalChecked, handleTotalChecked, deleteChecked } =
-    useCart();
+  const {
+    carts,
+    totalPrice,
+    totalChecked,
+    totalCount,
+    handleTotalChecked,
+    deleteChecked,
+  } = useCart();
 
   return (
     <section className="cart-section">
@@ -57,7 +63,7 @@ function CartList() {
             </div>
             <div className="flex-center mt-30 mx-10">
               <button className="primary-button flex-center">
-                주문하기(3개)
+                {`주문하기(${totalCount}개)`}
               </button>
             </div>
           </div>
