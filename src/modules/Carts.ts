@@ -17,8 +17,8 @@ const cartsSlice = createSlice({
     increment: (state, action) => {
       state.cartsList.forEach((cart) => {
         if (cart.id === action.payload.id) {
-          if (cart.count < 20) {
-            cart.count = ++action.payload.count;
+          if (cart.quantity < 20) {
+            cart.quantity = ++action.payload.quantity;
           }
         }
       });
@@ -26,8 +26,8 @@ const cartsSlice = createSlice({
     decrement: (state, action) => {
       state.cartsList.forEach((cart) => {
         if (cart.id === action.payload.id) {
-          if (cart.count > 1) {
-            cart.count = --action.payload.count;
+          if (cart.quantity > 1) {
+            cart.quantity = --action.payload.quantity;
           }
         }
       });
@@ -62,7 +62,7 @@ const cartsSlice = createSlice({
       .addCase(getCarts.fulfilled, (state, action) => {
         state.cartsList = [...action.payload];
         state.cartsList.forEach((cart) => {
-          cart.count = 1;
+          cart.quantity = 1;
           cart.checked = true;
         });
       })

@@ -10,15 +10,15 @@ import {
 import { GetCartResponse } from "../types/dto";
 import trash from "../assets/svgs/trash.svg";
 
-function Cart({ id, count, product, checked }: GetCartResponse) {
+function Cart({ id, quantity, product, checked }: GetCartResponse) {
   const dispatch = useDispatch();
 
   const increase = () => {
-    dispatch(increment({ id, count }));
+    dispatch(increment({ id, quantity }));
   };
 
   const decrease = () => {
-    dispatch(decrement({ id, count }));
+    dispatch(decrement({ id, quantity }));
   };
 
   const handleChecked = () => {
@@ -62,7 +62,7 @@ function Cart({ id, count, product, checked }: GetCartResponse) {
             <input
               type="number"
               className="number-input"
-              value={count}
+              value={quantity}
               disabled
             />
             <div>
@@ -75,7 +75,7 @@ function Cart({ id, count, product, checked }: GetCartResponse) {
             </div>
           </div>
           <span className="cart-price">
-            {(product.price * count).toLocaleString()}원
+            {(product.price * quantity).toLocaleString()}원
           </span>
         </div>
       </div>

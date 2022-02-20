@@ -22,7 +22,7 @@ export interface PostProductRequest {
 export interface Cart {
   id: number;
   product: Product;
-  count: number;
+  quantity: number;
   checked: boolean;
 }
 

@@ -14,7 +14,7 @@ describe("Cart", () => {
         imageUrl:
           "https://cdn-mart.baemin.com/sellergoods/main/5297837f-5ecd-4945-be2f-4a75854cd06e.jpg",
       },
-      count: 1,
+      quantity: 1,
       checked: true,
     };
 
@@ -23,7 +23,7 @@ describe("Cart", () => {
         <Cart
           id={cart.id}
           product={cart.product}
-          count={cart.count}
+          quantity={cart.quantity}
           checked={cart.checked}
         />
       </Provider>

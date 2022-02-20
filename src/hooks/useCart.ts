@@ -1,16 +1,25 @@
 import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../modules/Store";
 import { getCarts, deleteCart, totalCheck } from "../modules/Carts";
+import { postOrder } from "../modules/Orders";
 
 function useCart() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalChecked, setTotalChecked] = useState(true);
-  const [totalCount, setTotalCount] = useState(0);
+  const [totalQuantity, setTotalQuantity] = useState(0);
 
   const carts = useSelector((state: RootState) => state.carts.cartsList);
+
+  const checkedCartList = carts
+    .filter((cart) => cart.checked === true)
+    .map((cart) => {
+      return { ...cart.product, quantity: cart.quantity };
+    });
 
   const handleTotalChecked = () => {
     setTotalChecked(!totalChecked);
@@ -21,18 +30,18 @@ function useCart() {
       carts
         .map((cart) => {
           if (cart.checked) {
-            return cart.product.price * cart.count;
+            return cart.product.price * cart.quantity;
           }
           return 0;
         })
         .reduce((previous, current) => previous + current, 0)
     );
 
-    setTotalCount(
+    setTotalQuantity(
       carts
         .map((cart) => {
           if (cart.checked) {
-            return cart.count;
+            return cart.quantity;
           }
           return 0;
         })
@@ -46,6 +55,16 @@ function useCart() {
         cart.checked && dispatch(deleteCart(cart.id));
       });
       dispatch(getCarts());
+    }
+  };
+
+  const order = () => {
+    if (window.confirm("주문하시겠습니까?")) {
+      dispatch(postOrder(checkedCartList));
+      // carts.forEach((cart) => {
+      //   cart.checked && dispatch(deleteCart(cart.id));
+      // });
+      navigate("/order");
     }
   };
 
@@ -65,9 +84,10 @@ function useCart() {
     carts,
     totalPrice,
     totalChecked,
-    totalCount,
+    totalQuantity,
     handleTotalChecked,
     deleteChecked,
+    order,
   };
 }
 

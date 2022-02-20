@@ -7,9 +7,10 @@ function CartList() {
     carts,
     totalPrice,
     totalChecked,
-    totalCount,
+    totalQuantity,
     handleTotalChecked,
     deleteChecked,
+    order,
   } = useCart();
 
   return (
@@ -44,7 +45,7 @@ function CartList() {
               key={cart.id}
               id={cart.id}
               product={cart.product}
-              count={cart.count}
+              quantity={cart.quantity}
               checked={cart.checked}
             />
           ))}
@@ -62,8 +63,8 @@ function CartList() {
               </span>
             </div>
             <div className="flex-center mt-30 mx-10">
-              <button className="primary-button flex-center">
-                {`주문하기(${totalCount}개)`}
+              <button className="primary-button flex-center" onClick={order}>
+                {`주문하기(${totalQuantity}개)`}
               </button>
             </div>
           </div>
