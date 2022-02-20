@@ -63,9 +63,23 @@ function CartList() {
               </span>
             </div>
             <div className="flex-center mt-30 mx-10">
-              <button className="primary-button flex-center" onClick={order}>
-                {`주문하기(${totalQuantity}개)`}
-              </button>
+              {totalQuantity > 0 ? (
+                <button
+                  className="primary-button flex-center"
+                  onClick={order}
+                  style={{ cursor: "pointer" }}
+                >
+                  {`주문하기(${totalQuantity}개)`}
+                </button>
+              ) : (
+                <button
+                  className="primary-button flex-center"
+                  onClick={order}
+                  disabled
+                >
+                  {`주문하기(${totalQuantity}개)`}
+                </button>
+              )}
             </div>
           </div>
         </section>
