@@ -1,6 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { increment, decrement, check } from "../modules/Carts";
+import {
+  getCarts,
+  deleteCart,
+  increment,
+  decrement,
+  check,
+} from "../modules/Carts";
 import { GetCartResponse } from "../types/dto";
 import trash from "../assets/svgs/trash.svg";
 
@@ -17,6 +23,13 @@ function Cart({ id, count, product, checked }: GetCartResponse) {
 
   const handleChecked = () => {
     dispatch(check({ id, checked }));
+  };
+
+  const deleteClicked = () => {
+    if (window.confirm("해당 상품을 삭제하시겠습니까?")) {
+      dispatch(deleteCart(id));
+      dispatch(getCarts());
+    }
   };
 
   return (
@@ -39,7 +52,12 @@ function Cart({ id, count, product, checked }: GetCartResponse) {
           <span className="cart-name">{product.name}</span>
         </div>
         <div className="flex-col-center justify-end gap-15">
-          <img className="cart-trash-svg" src={trash} alt="삭제" />
+          <img
+            className="cart-trash-svg"
+            src={trash}
+            alt="삭제"
+            onClick={deleteClicked}
+          />
           <div className="number-input-container">
             <input
               type="number"
