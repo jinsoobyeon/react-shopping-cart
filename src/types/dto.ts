@@ -45,7 +45,9 @@ export interface Order {
   orderDetails: OrderDetail[];
 }
 
-export interface GetOrderResponse extends Order {}
+export interface GetOrderResponse extends Order {
+  index: number;
+}
 
 export interface PostOrderResponse {
   orderDetails: OrderDetail[];

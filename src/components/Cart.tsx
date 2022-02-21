@@ -46,8 +46,8 @@ function Cart({ id, quantity, product, checked }: GetCartResponse) {
           <img
             className="w-144 h-144"
             src={product.imageUrl}
-            loading="lazy"
             alt={`${product.name}`}
+            loading="lazy"
           />
           <span className="cart-name">{product.name}</span>
         </div>

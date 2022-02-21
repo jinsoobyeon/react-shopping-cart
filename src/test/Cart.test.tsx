@@ -4,7 +4,7 @@ import store from "../modules/Store";
 import Cart from "../components/Cart";
 
 describe("Cart", () => {
-  it("Cart State", () => {
+  it("Cart Component", () => {
     const cart = {
       id: 1,
       product: {

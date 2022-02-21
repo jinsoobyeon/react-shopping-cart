@@ -18,8 +18,8 @@ function Products({ id, name, price, imageUrl }: GetProdutResponse) {
       <img
         className="w-280 h280"
         src={imageUrl}
-        loading="lazy"
         alt={`${name}`}
+        loading="lazy"
       />
       <div className="flex justify-between w-280 p-5">
         <div className="product-info">

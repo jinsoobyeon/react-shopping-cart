@@ -5,7 +5,7 @@ import store from "../modules/Store";
 import Product from "../components/Product";
 
 describe("Product", () => {
-  it("Product State", () => {
+  it("Product Component", () => {
     const product = {
       id: 1,
       name: "냉면용기(대)",
