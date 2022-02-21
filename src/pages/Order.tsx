@@ -17,8 +17,8 @@ function Order() {
             <OrderDetail
               key={orderDetail.id}
               id={orderDetail.id}
-              price={orderDetail.price}
               name={orderDetail.name}
+              price={orderDetail.price}
               imageUrl={orderDetail.imageUrl}
               quantity={orderDetail.quantity}
             />
