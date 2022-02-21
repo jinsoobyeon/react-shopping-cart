@@ -1,9 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../modules/Store";
 import { getOrders } from "../modules/Orders";
 
 function useOrder() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [totalOrderPrice, setTotalOrderPrice] = useState(0);
@@ -28,6 +30,12 @@ function useOrder() {
     );
   }, [orderDetails]);
 
+  const charge = () => {
+    if (window.confirm("결제하시겠습니까?")) {
+      navigate("/orderlist");
+    }
+  };
+
   useEffect(() => {
     dispatch(getOrders());
   }, [dispatch]);
@@ -36,6 +44,6 @@ function useOrder() {
     handleOrderTotal();
   }, [handleOrderTotal]);
 
-  return { orders, orderDetails, totalOrderPrice };
+  return { orders, orderDetails, totalOrderPrice, charge };
 }
 export default useOrder;

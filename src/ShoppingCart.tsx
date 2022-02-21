@@ -13,8 +13,8 @@ function ShoppingCart() {
       <Routes>
         <Route path="/" element={<ProductList />} />
         <Route path="/cart" element={<CartList />} />
-        <Route path="/orderlist" element={<OrderList />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/orderlist" element={<OrderList />} />
       </Routes>
     </BrowserRouter>
   );

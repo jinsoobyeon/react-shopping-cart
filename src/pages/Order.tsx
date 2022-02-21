@@ -2,7 +2,7 @@ import useOrder from "../hooks/useOrder";
 import OrderDetail from "../components/OrderDetail";
 
 function Order() {
-  const { orderDetails, totalOrderPrice } = useOrder();
+  const { orderDetails, totalOrderPrice, charge } = useOrder();
   return (
     <section className="order-section">
       <header className="flex-col-center mt-20">
@@ -11,7 +11,7 @@ function Order() {
       </header>
       <div className="flex">
         <section className="order-left-section">
-          <h3 className="order-title">주문 상품(3건)</h3>
+          <h3 className="order-title">{`주문 상품(${orderDetails.length}건)`}</h3>
           <hr className="divide-line-gray mt-10" />
           {orderDetails.map((orderDetail) => (
             <OrderDetail
@@ -35,7 +35,7 @@ function Order() {
               <span className="highlight-text">{`${totalOrderPrice.toLocaleString()}원`}</span>
             </div>
             <div className="flex-center mt-30 mx-10">
-              <button className="primary-button flex-center">
+              <button className="primary-button flex-center" onClick={charge}>
                 {`${totalOrderPrice.toLocaleString()}원 결제하기`}
               </button>
             </div>

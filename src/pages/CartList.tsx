@@ -38,7 +38,7 @@ function CartList() {
               상품삭제
             </button>
           </div>
-          <h3 className="cart-title">든든배송 상품(3개)</h3>
+          <h3 className="cart-title">{`든든배송 상품(${totalQuantity}개)`}</h3>
           <hr className="divide-line-gray mt-10" />
           {carts.map((cart: GetCartResponse) => (
             <Cart
@@ -63,23 +63,13 @@ function CartList() {
               </span>
             </div>
             <div className="flex-center mt-30 mx-10">
-              {totalQuantity > 0 ? (
-                <button
-                  className="primary-button flex-center"
-                  onClick={order}
-                  style={{ cursor: "pointer" }}
-                >
-                  {`주문하기(${totalQuantity}개)`}
-                </button>
-              ) : (
-                <button
-                  className="primary-button flex-center"
-                  onClick={order}
-                  disabled
-                >
-                  {`주문하기(${totalQuantity}개)`}
-                </button>
-              )}
+              <button
+                className="primary-button flex-center"
+                onClick={order}
+                disabled={totalQuantity === 0 && true}
+              >
+                {`주문하기(${totalQuantity}개)`}
+              </button>
             </div>
           </div>
         </section>
