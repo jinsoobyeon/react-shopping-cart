@@ -1,4 +1,7 @@
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "../modules/Store";
 import OrderDetail from "../components/OrderDetail";
 import Order from "../components/Order";
 
@@ -48,9 +51,20 @@ describe("Order", () => {
           quantity: 3,
         },
       ],
+      index: 1,
     };
 
-    render(<Order id={order.id} orderDetails={order.orderDetails} index={1} />);
+    render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Order
+            id={order.id}
+            orderDetails={order.orderDetails}
+            index={order.id}
+          />
+        </Provider>
+      </BrowserRouter>
+    );
 
     const orderElement = screen.getByTestId("order");
     expect(orderElement).not.toBeNull();

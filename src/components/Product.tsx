@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { GetProdutResponse } from "../types/dto";
 import { postCart } from "../modules/Carts";
+import { GetProdutResponse } from "../types/dto";
 import cart from "../assets/svgs/cart.svg";
 
 function Products({ id, name, price, imageUrl }: GetProdutResponse) {

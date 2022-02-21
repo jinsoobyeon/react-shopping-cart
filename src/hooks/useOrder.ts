@@ -11,6 +11,7 @@ function useOrder() {
   const [totalOrderPrice, setTotalOrderPrice] = useState(0);
 
   const orders = useSelector((state: RootState) => state.orders.ordersList);
+  const showModal = useSelector((state: RootState) => state.modal.showModal);
 
   const orderDetails = orders
     .map((order) => {
@@ -44,6 +45,12 @@ function useOrder() {
     handleOrderTotal();
   }, [handleOrderTotal]);
 
-  return { orders, orderDetails, totalOrderPrice, charge };
+  return {
+    orders,
+    orderDetails,
+    showModal,
+    totalOrderPrice,
+    charge,
+  };
 }
 export default useOrder;

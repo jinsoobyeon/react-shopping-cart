@@ -1,8 +1,18 @@
-import { GetOrderResponse } from "../types/dto";
+import { useDispatch } from "react-redux";
+import { postCart } from "../modules/Carts";
+import { openModal } from "../modules/Modal";
+import { GetProdutResponse, GetOrderResponse } from "../types/dto";
 
-function OrderList({ id, orderDetails, index }: GetOrderResponse) {
+function OrderList({ orderDetails, index }: GetOrderResponse) {
+  const dispatch = useDispatch();
+
+  const addCartWithModal = (product: GetProdutResponse) => {
+    dispatch(postCart(product));
+    dispatch(openModal());
+  };
+
   return (
-    <div className="order-list" data-testId="order">
+    <div className="order-list" data-testid="order">
       <div className="order-list__header">
         <span>{`주문번호: ${++index}`}</span>
         <span>상세보기 &gt;</span>
@@ -23,7 +33,17 @@ function OrderList({ id, orderDetails, index }: GetOrderResponse) {
               }개`}</span>
             </div>
           </div>
-          <button className="primary-button-small flex-center self-start">
+          <button
+            className="primary-button-small flex-center self-start"
+            onClick={() =>
+              addCartWithModal({
+                id: orderDetail.id,
+                name: orderDetail.name,
+                price: orderDetail.price,
+                imageUrl: orderDetail.imageUrl,
+              })
+            }
+          >
             장바구니
           </button>
         </div>
