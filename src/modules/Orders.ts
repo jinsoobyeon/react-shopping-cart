@@ -16,6 +16,17 @@ const ordersSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(getOrders.pending, (state) => {
+        state.ordersList = [...state.ordersList];
+      })
+      .addCase(getOrders.fulfilled, (state, action) => {
+        state.ordersList = [...action.payload];
+      })
+      .addCase(getOrders.rejected, (_, action) => {
+        console.log(action.error.message);
+      });
+
+    builder
       .addCase(postOrder.pending, (state) => {
         state.ordersList = [...state.ordersList];
       })
@@ -26,6 +37,15 @@ const ordersSlice = createSlice({
         console.log(action.error.message);
       });
   },
+});
+
+export const getOrders = createAsyncThunk("order/get", async () => {
+  const response = await axios({
+    method: "get",
+    url: "http://localhost:3003/orders",
+    headers: { "Cache-Control": "no-cache" },
+  });
+  return response.data;
 });
 
 export const postOrder = createAsyncThunk(

@@ -61,9 +61,9 @@ function useCart() {
   const order = () => {
     if (window.confirm("주문하시겠습니까?")) {
       dispatch(postOrder(checkedCartList));
-      // carts.forEach((cart) => {
-      //   cart.checked && dispatch(deleteCart(cart.id));
-      // });
+      carts.forEach((cart) => {
+        cart.checked && dispatch(deleteCart(cart.id));
+      });
       navigate("/order");
     }
   };
