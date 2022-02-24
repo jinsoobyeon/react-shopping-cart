@@ -16,7 +16,7 @@ function useCart() {
   const carts = useSelector((state: RootState) => state.carts.cartsList);
 
   const checkedCartList = carts
-    .filter((cart) => cart.checked === true)
+    .filter((cart) => cart.checked)
     .map((cart) => {
       return { ...cart.product, quantity: cart.quantity };
     });
@@ -28,23 +28,13 @@ function useCart() {
   const handleTotal = useCallback(() => {
     setTotalPrice(
       carts
-        .map((cart) => {
-          if (cart.checked) {
-            return cart.product.price * cart.quantity;
-          }
-          return 0;
-        })
+        .map((cart) => (cart.checked ? cart.product.price * cart.quantity : 0))
         .reduce((previous, current) => previous + current, 0)
     );
 
     setTotalQuantity(
       carts
-        .map((cart) => {
-          if (cart.checked) {
-            return cart.quantity;
-          }
-          return 0;
-        })
+        .map((cart) => (cart.checked ? cart.quantity : 0))
         .reduce((previous, current) => previous + current, 0)
     );
   }, [carts]);

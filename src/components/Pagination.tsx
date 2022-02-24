@@ -7,7 +7,7 @@ type PaginationState = {
 function Pagination({ total, limit, setPage }: PaginationState) {
   const pageNumbers: Array<number> = Array.from(
     { length: Math.ceil(total / limit) },
-    (_, index) => index + 1
+    (_, index) => ++index
   );
 
   const handlePage = (number: number) => {

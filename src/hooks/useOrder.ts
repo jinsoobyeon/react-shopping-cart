@@ -14,19 +14,13 @@ function useOrder() {
   const showModal = useSelector((state: RootState) => state.modal.showModal);
 
   const orderDetails = orders
-    .map((order) => {
-      return order.orderDetails;
-    })
-    .reduce((previous, current) => {
-      return [...previous, ...current];
-    }, []);
+    .map((order) => order.orderDetails)
+    .reduce((previous, current) => [...previous, ...current], []);
 
   const handleOrderTotal = useCallback(() => {
     setTotalOrderPrice(
       orderDetails
-        .map((orderDetail) => {
-          return orderDetail.price * orderDetail.quantity;
-        })
+        .map((orderDetail) => orderDetail.price * orderDetail.quantity)
         .reduce((previous, current) => previous + current, 0)
     );
   }, [orderDetails]);
