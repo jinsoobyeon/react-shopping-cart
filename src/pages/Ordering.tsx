@@ -1,7 +1,7 @@
 import useOrder from "../hooks/useOrder";
 import OrderDetail from "../components/OrderDetail";
 
-function Order() {
+function Ordering() {
   const { orderDetails, totalOrderPrice, charge } = useOrder();
   return (
     <section className="order-section">
@@ -46,4 +46,4 @@ function Order() {
   );
 }
 
-export default Order;
+export default Ordering;

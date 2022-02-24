@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import ProductList from "./pages/ProductList";
 import CartList from "./pages/CartList";
 import OrderList from "./pages/OrderList";
-import Order from "./pages/Order";
+import Ordering from "./pages/Ordering";
 
 function ShoppingCart() {
   return (
@@ -13,7 +13,7 @@ function ShoppingCart() {
       <Routes>
         <Route path="/" element={<ProductList />} />
         <Route path="/cart" element={<CartList />} />
-        <Route path="/order" element={<Order />} />
+        <Route path="/order" element={<Ordering />} />
         <Route path="/orderlist" element={<OrderList />} />
       </Routes>
     </BrowserRouter>

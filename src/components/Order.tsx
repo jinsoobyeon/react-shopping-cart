@@ -3,7 +3,7 @@ import { postCart } from "../modules/Carts";
 import { openModal } from "../modules/Modal";
 import { GetProdutResponse, GetOrderResponse } from "../types/dto";
 
-function OrderList({ orderDetails, index }: GetOrderResponse) {
+function Order({ orderDetails, index }: GetOrderResponse) {
   const dispatch = useDispatch();
 
   const addCartWithModal = (product: GetProdutResponse) => {
@@ -51,4 +51,4 @@ function OrderList({ orderDetails, index }: GetOrderResponse) {
     </div>
   );
 }
-export default OrderList;
+export default Order;

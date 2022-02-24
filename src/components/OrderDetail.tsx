@@ -1,7 +1,7 @@
 import React from "react";
-import { OrderDetail } from "../types/dto";
+import { GetOrderDetailHook } from "../types/dto";
 
-function OrderDetailComponent({ name, imageUrl, quantity }: OrderDetail) {
+function OrderDetail({ name, imageUrl, quantity }: GetOrderDetailHook) {
   return (
     <React.Fragment>
       <div className="order-container" data-testid="orderDetail">
@@ -23,4 +23,4 @@ function OrderDetailComponent({ name, imageUrl, quantity }: OrderDetail) {
   );
 }
 
-export default OrderDetailComponent;
+export default OrderDetail;

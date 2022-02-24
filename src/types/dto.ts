@@ -40,6 +40,8 @@ export interface OrderDetail extends Product {
   quantity: number;
 }
 
+export interface GetOrderDetailHook extends OrderDetail {}
+
 export interface Order {
   id: number;
   orderDetails: OrderDetail[];
