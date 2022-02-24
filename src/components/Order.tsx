@@ -12,7 +12,7 @@ function Order({ orderDetails, index }: GetOrderResponse) {
   };
 
   return (
-    <div className="order-list" data-testid="order">
+    <div className="order-list">
       <div className="order-list__header">
         <span>{`주문번호: ${++index}`}</span>
         <span>상세보기 &gt;</span>

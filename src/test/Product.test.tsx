@@ -5,7 +5,7 @@ import store from "../modules/Store";
 import Product from "../components/Product";
 
 describe("Product", () => {
-  it("Product Component", () => {
+  it("Product State", () => {
     const product = {
       id: 1,
       name: "냉면용기(대)",
@@ -26,7 +26,14 @@ describe("Product", () => {
       </BrowserRouter>
     );
 
-    const productElement = screen.getByTestId("product");
-    expect(productElement).not.toBeNull();
+    const productName = screen.getByText(product.name);
+    const productPrice = screen.getByText(
+      `${product.price.toLocaleString()}원`
+    );
+    const productImgAlt = screen.getByAltText(product.name);
+
+    expect(productName).toBeInTheDocument();
+    expect(productPrice).toBeInTheDocument();
+    expect(productImgAlt).toBeInTheDocument();
   });
 });

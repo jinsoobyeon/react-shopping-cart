@@ -14,7 +14,7 @@ function Products({ id, name, price, imageUrl }: GetProdutResponse) {
   };
 
   return (
-    <div data-testid="product">
+    <div>
       <img
         className="w-280 h280"
         src={imageUrl}

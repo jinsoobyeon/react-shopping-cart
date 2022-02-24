@@ -34,7 +34,7 @@ function Cart({ id, quantity, product, checked }: GetCartResponse) {
 
   return (
     <React.Fragment>
-      <div className="cart-container" data-testid="cart">
+      <div className="cart-container">
         <div className="flex gap-15 mt-10">
           <input
             className="checkbox"

@@ -4,7 +4,7 @@ import store from "../modules/Store";
 import Cart from "../components/Cart";
 
 describe("Cart", () => {
-  it("Cart Component", () => {
+  it("Cart State", () => {
     const cart = {
       id: 1,
       product: {
@@ -29,7 +29,16 @@ describe("Cart", () => {
       </Provider>
     );
 
-    const cartElement = screen.getByTestId("cart");
-    expect(cartElement).not.toBeNull();
+    const cartName = screen.getByText(cart.product.name);
+    const cartPrice = screen.getByText(
+      `${(cart.product.price * cart.quantity).toLocaleString()}원`
+    );
+    const cartImgAlt = screen.getByAltText(cart.product.name);
+    const cartInputValue = screen.getByDisplayValue(cart.quantity);
+
+    expect(cartName).toBeInTheDocument();
+    expect(cartPrice).toBeInTheDocument();
+    expect(cartImgAlt).toBeInTheDocument();
+    expect(cartInputValue).toBeInTheDocument();
   });
 });

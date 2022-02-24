@@ -4,7 +4,7 @@ import { GetOrderDetailHook } from "../types/dto";
 function OrderDetail({ name, imageUrl, quantity }: GetOrderDetailHook) {
   return (
     <React.Fragment>
-      <div className="order-container" data-testid="orderDetail">
+      <div className="order-container">
         <div className="flex gap-15 mt-10">
           <img
             className="w-144 h-144"
