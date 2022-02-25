@@ -16,15 +16,7 @@ describe("Order", () => {
       quantity: 5,
     };
 
-    render(
-      <OrderDetail
-        id={orderDetail.id}
-        name={orderDetail.name}
-        price={orderDetail.price}
-        imageUrl={orderDetail.imageUrl}
-        quantity={orderDetail.quantity}
-      />
-    );
+    render(<OrderDetail orderDetail={orderDetail} />);
 
     const orderDetailName = screen.getByText(orderDetail.name);
     const orderDetailQuantity = screen.getByText(
@@ -37,7 +29,7 @@ describe("Order", () => {
     expect(orderDetailImgAlt).toBeInTheDocument();
   });
 
-  it("Order Component", () => {
+  it("Order State", () => {
     const order = {
       id: 1,
       orderDetails: [
@@ -64,11 +56,7 @@ describe("Order", () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <Order
-            id={order.id}
-            orderDetails={order.orderDetails}
-            index={order.id}
-          />
+          <Order order={order} index={order.index} />
         </Provider>
       </BrowserRouter>
     );

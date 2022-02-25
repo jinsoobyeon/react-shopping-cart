@@ -7,10 +7,12 @@ import {
   decrement,
   check,
 } from "../modules/Carts";
-import { GetCartResponse } from "../types/dto";
+import { CartProps } from "../types/dto";
 import trash from "../assets/svgs/trash.svg";
 
-function Cart({ id, quantity, product, checked }: GetCartResponse) {
+function Cart({ cart }: CartProps) {
+  const { id, product, quantity, checked } = cart;
+
   const dispatch = useDispatch();
 
   const increase = () => {

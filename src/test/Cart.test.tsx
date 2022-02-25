@@ -20,12 +20,7 @@ describe("Cart", () => {
 
     render(
       <Provider store={store}>
-        <Cart
-          id={cart.id}
-          product={cart.product}
-          quantity={cart.quantity}
-          checked={cart.checked}
-        />
+        <Cart cart={cart} />
       </Provider>
     );
 

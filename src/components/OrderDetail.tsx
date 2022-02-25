@@ -1,7 +1,8 @@
 import React from "react";
-import { GetOrderDetailHook } from "../types/dto";
+import { OrderDetailProps } from "../types/dto";
 
-function OrderDetail({ name, imageUrl, quantity }: GetOrderDetailHook) {
+function OrderDetail({ orderDetail }: OrderDetailProps) {
+  const { name, imageUrl, quantity } = orderDetail;
   return (
     <React.Fragment>
       <div className="order-container">

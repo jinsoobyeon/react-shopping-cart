@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import { postCart } from "../modules/Carts";
 import { openModal } from "../modules/Modal";
-import { GetProdutResponse, GetOrderResponse } from "../types/dto";
+import { GetProdutResponse, OrderProps } from "../types/dto";
 
-function Order({ orderDetails, index }: GetOrderResponse) {
+function Order({ order, index }: OrderProps) {
+  const { orderDetails } = order;
+
   const dispatch = useDispatch();
 
   const addCartWithModal = (product: GetProdutResponse) => {

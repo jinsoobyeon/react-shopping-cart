@@ -41,13 +41,7 @@ function CartList() {
           <h3 className="cart-title">{`든든배송 상품(${totalQuantity}개)`}</h3>
           <hr className="divide-line-gray mt-10" />
           {carts.map((cart: GetCartResponse) => (
-            <Cart
-              key={cart.id}
-              id={cart.id}
-              product={cart.product}
-              quantity={cart.quantity}
-              checked={cart.checked}
-            />
+            <Cart key={cart.id} cart={cart} />
           ))}
         </section>
         <section className="cart-right-section">

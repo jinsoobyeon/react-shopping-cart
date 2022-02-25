@@ -1,5 +1,6 @@
 import useOrder from "../hooks/useOrder";
 import OrderDetail from "../components/OrderDetail";
+import { OrderDetailHook } from "../types/dto";
 
 function Ordering() {
   const { orderDetails, totalOrderPrice, charge } = useOrder();
@@ -13,15 +14,8 @@ function Ordering() {
         <section className="order-left-section">
           <h3 className="order-title">{`주문 상품(${orderDetails.length}건)`}</h3>
           <hr className="divide-line-gray mt-10" />
-          {orderDetails.map((orderDetail) => (
-            <OrderDetail
-              key={orderDetail.id}
-              id={orderDetail.id}
-              name={orderDetail.name}
-              price={orderDetail.price}
-              imageUrl={orderDetail.imageUrl}
-              quantity={orderDetail.quantity}
-            />
+          {orderDetails.map((orderDetail: OrderDetailHook) => (
+            <OrderDetail key={orderDetail.id} orderDetail={orderDetail} />
           ))}
         </section>
         <section className="order-right-section">

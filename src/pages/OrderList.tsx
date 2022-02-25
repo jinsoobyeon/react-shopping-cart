@@ -2,6 +2,7 @@ import React from "react";
 import useOrder from "../hooks/useOrder";
 import Order from "../components/Order";
 import Modal from "../components/Modal";
+import { OrderHook } from "../types/dto";
 
 function OrderList() {
   const { orders, showModal } = useOrder();
@@ -13,13 +14,8 @@ function OrderList() {
           <h2 className="order-section__title">주문 목록</h2>
           <hr className="divide-line mt-20" />
         </header>
-        {orders.map((order, index) => (
-          <Order
-            key={order.id}
-            id={order.id}
-            orderDetails={order.orderDetails}
-            index={index}
-          />
+        {orders.map((order: OrderHook, index: number) => (
+          <Order key={order.id} order={order} index={index} />
         ))}
       </section>
       {showModal && <Modal />}

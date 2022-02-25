@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { postCart } from "../modules/Carts";
-import { GetProdutResponse } from "../types/dto";
+import { ProductProps, GetProdutResponse } from "../types/dto";
 import cart from "../assets/svgs/cart.svg";
 
-function Products({ id, name, price, imageUrl }: GetProdutResponse) {
+function Products({ product }: ProductProps) {
+  const { id, name, price, imageUrl } = product;
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

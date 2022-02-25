@@ -20,13 +20,7 @@ function ProductList() {
         {products
           .slice(offset, offset + limit)
           .map((product: GetProdutResponse) => (
-            <Product
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              price={product.price}
-              imageUrl={product.imageUrl}
-            />
+            <Product key={product.id} product={product} />
           ))}
       </section>
       <Pagination total={products.length} limit={limit} setPage={setPage} />

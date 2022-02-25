@@ -16,12 +16,7 @@ describe("Product", () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <Product
-            id={product.id}
-            name={product.name}
-            price={product.price}
-            imageUrl={product.imageUrl}
-          />
+          <Product product={product} />
         </Provider>
       </BrowserRouter>
     );
