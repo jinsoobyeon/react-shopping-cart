@@ -6,6 +6,8 @@ import OrderDetail from "../components/OrderDetail";
 import Order from "../components/Order";
 
 describe("Order", () => {
+  const index = 1;
+
   it("OrderDetail State", () => {
     const orderDetail = {
       id: 1,
@@ -50,7 +52,7 @@ describe("Order", () => {
           quantity: 3,
         },
       ],
-      index: 1,
+      index,
     };
 
     render(
